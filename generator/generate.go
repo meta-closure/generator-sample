@@ -1,6 +1,10 @@
 package generator
 
 import (
+	"encoding/json"
+	"io/ioutil"
+
+	"github.com/ghodss/yaml"
 	"github.com/lestrrat/go-jshschema"
 	"github.com/pkg/errors"
 )
@@ -14,9 +18,19 @@ type Schema struct {
 }
 
 func NewSchema(filePath string) (Schema, error) {
-	h, err := hschema.ReadFile(filePath)
+	y, err := ioutil.ReadFile(filePath)
 	if err != nil {
-		return Schema{}, errors.Wrap(err, "reading JSON Schema")
+		return Schema{}, errors.Wrap(err, "open file")
+	}
+
+	j, err := yaml.YAMLToJSON(y)
+	if err != nil {
+		return Schema{}, errors.Wrap(err, "invalid YAML format")
+	}
+
+	h := hschema.New()
+	if err := json.Unmarshal(j, h); err != nil {
+		return Schema{}, errors.Wrap(err, "invalid JSON Hyper Schema format")
 	}
 
 	return Schema{
