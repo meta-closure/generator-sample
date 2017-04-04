@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/meta-closure/sample-generater/generater"
+	"github.com/meta-closure/sample-generater/generator"
 	"github.com/meta-closure/sample-generater/server"
 )
 
@@ -44,7 +44,7 @@ func _main() error {
 		return err
 	}
 	if cmd.isGenerate() {
-		return generater.Generate()
+		return generator.Generate()
 	}
 
 	if cmd.isRun() {
