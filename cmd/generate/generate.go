@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/meta-closure/sample-generater/generator"
-	"github.com/meta-closure/sample-generater/server"
 )
 
 type Operation struct {
@@ -15,7 +14,7 @@ type Operation struct {
 
 func NewOperation(args []string) (Operation, error) {
 	if len(args) != 2 {
-		return Operation{}, errors.New("required argument is 1")
+		return Operation{}, errors.New("required argument length is 1")
 	}
 
 	return Operation{
@@ -25,10 +24,6 @@ func NewOperation(args []string) (Operation, error) {
 
 func (op Operation) isGenerate() bool {
 	return op.command == "generate"
-}
-
-func (op Operation) isRun() bool {
-	return op.command == "run"
 }
 
 func main() {
@@ -45,10 +40,6 @@ func _main() error {
 	}
 	if cmd.isGenerate() {
 		return generator.Generate()
-	}
-
-	if cmd.isRun() {
-		return server.Run()
 	}
 
 	return errors.New("unknown operation")
