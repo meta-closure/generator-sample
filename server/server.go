@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 )
+
 type Hook struct {
 	handler func(http.ResponseWriter, *http.Request) error
 }

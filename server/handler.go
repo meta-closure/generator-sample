@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -9,7 +10,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func postUserHandler(w http.ResponseWriter, r *http.Request) error {
+func PostUserHandler(w http.ResponseWriter, r *http.Request) error {
 	b, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return errors.Wrap(err, "read request body")
@@ -25,7 +26,6 @@ func postUserHandler(w http.ResponseWriter, r *http.Request) error {
 		Age:       in.Age,
 		CreatedAt: dbr.NewNullString(time.Now()),
 	}
-
-	out.Request()
+	fmt.Println(out)
 	return nil
 }

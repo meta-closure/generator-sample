@@ -2,19 +2,19 @@ title: sample-schema
 description: sample schema
 definitions: 
   name:
-    title: Name
+    title: name
     type: string
     description: name
   age:
-    title: Age
+    title: age
     type: string
     description: age
   created_at:
-    title: CreatedAt
+    title: created at
     type: string
     description: created_at
   tag:
-    title: Tag
+    title: tag
     type: string
     description: tag
   tags:
@@ -59,12 +59,12 @@ definitions:
         
 href: https://sample-generater
 links:
-    - title: POST User
-      description: post
-      rel: self
-      href: /user
-      method: POST
-      Schema:
-        $ref: '#/definitions/user_input'
-      targetSchema:
-        $ref: '#/definitions/user_output'
+  - title: POST User
+    description: post
+    rel: self
+    href: /user
+    method: POST
+    schema:
+      $ref: '#/definitions/user_input'
+    targetSchema:
+      $ref: '#/definitions/user_output'
